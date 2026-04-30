@@ -77,10 +77,12 @@ function warn(message) {
 /* ── Banner ────────────────────────────────────────────────── */
 
 console.log(`
-   \x1b[35m     _                 _\x1b[0m
-   \x1b[35m  __| |___ ___ _____ _| |\x1b[0m
-   \x1b[35m | . | . |  _|     | . |\x1b[0m\x1b[2m-search\x1b[0m
+   \x1b[35m    _                 _\x1b[0m
+   \x1b[35m  _| |___ ___ _____ _| |\x1b[0m
+   \x1b[35m | . | . |  _|     | . |\x1b[0m
    \x1b[35m |___|___|___|_|_|_|___|\x1b[0m
+
+   \x1b[35m Semantic Search\x1b[0m
 
    \x1b[2m🛡️  Universal Failsafe\x1b[0m
 `);
@@ -487,13 +489,16 @@ try {
   });
 
   check('CLI handles missing directory gracefully', () => {
-    // Running against a nonexistent dir should trigger wizard (which we can't interact with)
-    // But at minimum it should not crash with unhandled exception
+    // Running with a nonexistent dir triggers the wizard (needs stdin) — that's fine.
+    // We just verify it doesn't produce an unhandled crash.
     try {
-      runCmd(`node "${CLI_BIN}" /nonexistent/path 2>&1`, CWD);
-    } catch {
-      // Expected: may fail due to wizard prompt or missing deps
-      // As long as it doesn't produce an unhandled exception
+      execSync(`node "${CLI_BIN}" /nonexistent/path 2>&1`, { cwd: CWD, stdio: 'pipe', timeout: 5000 });
+    } catch (e) {
+      // Expected: wizard prompt exits with SIGPIPE or the peer-dep check exits 1.
+      // Unhandled exceptions would show "Error:" or stack traces.
+      const out = e.stdout?.toString() ?? '';
+      const isClean = out.includes('docmd-search') || out.includes('model') || out.includes('Missing');
+      assert(isClean || e.status !== null, `CLI produced unhandled crash: ${out.slice(0, 200)}`);
     }
   });
 

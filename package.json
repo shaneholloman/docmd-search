@@ -37,7 +37,7 @@
     "client-side",
     "vector-search",
     "documentation",
-    "ai"
+    "embeddings"
   ],
   "author": {
     "name": "Ghazi",

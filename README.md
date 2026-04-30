@@ -11,7 +11,7 @@
   <p>
     <b>Offline semantic search for any documentation.</b>
     <br/>
-    AI-powered indexing at build time. Pure math in the browser.
+    Semantic indexing at build time. Pure math in the browser.
   </p>
   
   <!-- BADGES -->

@@ -1,5 +1,19 @@
 /**
- * docmd-search — Embedding Model Manager.
+ * --------------------------------------------------------------------
+ * docmd-search : offline semantic search for docs, zero-config.
+ *
+ * @package     docmd-search (and ecosystem)
+ * @website     https://docmd.io/search
+ * @repository  https://github.com/docmd-io/docmd-search
+ * @license     MIT
+ * @copyright   Copyright (c) 2026-present docmd.io
+ *
+ * [docmd-source] - Please do not remove this header.
+ * --------------------------------------------------------------------
+ */
+
+/**
+ * Embedding Model Manager.
  *
  * Wraps @huggingface/transformers + onnxruntime-node to provide:
  * - Model download with progress tracking
