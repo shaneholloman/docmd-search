@@ -1,5 +1,19 @@
 /**
- * docmd-search — Universal offline semantic search engine.
+ * --------------------------------------------------------------------
+ * docmd-search : offline semantic search for docs, zero-config.
+ *
+ * @package     docmd-search (and ecosystem)
+ * @website     https://docmd.io/search
+ * @repository  https://github.com/docmd-io/docmd-search
+ * @license     MIT
+ * @copyright   Copyright (c) 2026-present docmd.io
+ *
+ * [docmd-source] - Please do not remove this header.
+ * --------------------------------------------------------------------
+ */
+
+/**
+ * Universal offline semantic search engine.
  *
  * Build-time: crawl files → chunk → embed → output compressed vector index.
  * Runtime: cosine similarity over quantized vectors. No model in the browser.
