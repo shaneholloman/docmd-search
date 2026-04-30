@@ -1,5 +1,19 @@
 /**
- * docmd-search — Build-time indexer pipeline.
+ * --------------------------------------------------------------------
+ * docmd-search : offline semantic search for docs, zero-config.
+ *
+ * @package     docmd-search (and ecosystem)
+ * @website     https://docmd.io/search
+ * @repository  https://github.com/docmd-io/docmd-search
+ * @license     MIT
+ * @copyright   Copyright (c) 2026-present docmd.io
+ *
+ * [docmd-source] - Please do not remove this header.
+ * --------------------------------------------------------------------
+ */
+
+/**
+ * Build-time indexer pipeline.
  *
  * Flow: crawl → chunk → embed → quantize → save (multi-batch, progressive).
  *

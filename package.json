@@ -23,7 +23,12 @@
   ],
   "scripts": {
     "build": "node build.js",
-    "dev": "node build.js --watch"
+    "dev": "node build.js --watch",
+    "prep": "npm run reset && npm run verify",
+    "verify": "node --experimental-vm-modules scripts/failsafe.js",
+    "typecheck": "npx tsc --noEmit --project tsconfig.base.json",
+    "clean": "rm -rf dist node_modules *.tsbuildinfo tsconfig.check.json > /dev/null 2>&1 || true",
+    "reset": "npm run clean && npm install --silent && npm run build"
   },
   "keywords": [
     "search",
@@ -52,15 +57,21 @@
   },
   "devDependencies": {
     "@huggingface/transformers": "^4.2.0",
+    "@types/node": "^25.6.0",
     "esbuild": "^0.25.0",
-    "onnxruntime-node": "^1.24.3"
+    "onnxruntime-node": "^1.24.3",
+    "typescript": "^6.0.3"
   },
   "peerDependencies": {
     "@huggingface/transformers": "^4.0.0",
     "onnxruntime-node": "^1.20.0"
   },
   "peerDependenciesMeta": {
-    "@huggingface/transformers": { "optional": true },
-    "onnxruntime-node": { "optional": true }
+    "@huggingface/transformers": {
+      "optional": true
+    },
+    "onnxruntime-node": {
+      "optional": true
+    }
   }
 }

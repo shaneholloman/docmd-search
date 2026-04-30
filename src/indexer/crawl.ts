@@ -1,3 +1,17 @@
+/**
+ * --------------------------------------------------------------------
+ * docmd-search : offline semantic search for docs, zero-config.
+ *
+ * @package     docmd-search (and ecosystem)
+ * @website     https://docmd.io/search
+ * @repository  https://github.com/docmd-io/docmd-search
+ * @license     MIT
+ * @copyright   Copyright (c) 2026-present docmd.io
+ *
+ * [docmd-source] - Please do not remove this header.
+ * --------------------------------------------------------------------
+ */
+
 import { readdir, stat } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 

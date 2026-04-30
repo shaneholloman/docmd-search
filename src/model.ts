@@ -151,7 +151,9 @@ export function createModelManager(
         const { pipeline: createPipeline, env } = await import('@huggingface/transformers');
 
         // Configure ONNX Runtime backend
-        env.backends.onnx.wasm.numThreads = 1; // Single thread for stability
+        if (env.backends?.onnx?.wasm) {
+          env.backends.onnx.wasm.numThreads = 1; // Single thread for stability
+        }
 
         // Track download progress
         let lastProgress = 0;
