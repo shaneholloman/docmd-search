@@ -27,10 +27,10 @@
 import { stat } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { exec } from 'node:child_process';
+import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 
-const execAsync = promisify(exec);
+const execFileAsync = promisify(execFile);
 
 /**
  * Check if a directory is a git repository.
@@ -49,8 +49,9 @@ export async function getChangedFilesFromGit(
 ): Promise<Set<string>> {
   try {
     // Get all changed files (staged + unstaged + untracked)
-    const { stdout } = await execAsync(
-      'git status --porcelain',
+    // execFile (no shell) prevents CWE-78 command injection via repoDir.
+    const { stdout } = await execFileAsync(
+      'git', ['status', '--porcelain'],
       { cwd: repoDir }
     );
 

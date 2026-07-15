@@ -134,8 +134,9 @@ async function runTaskWithFallback<T>(type: string, payload: any): Promise<T | n
   // If primary is rust, try JS engine
   if (_engineId === 'rust') {
     try {
-      const dynamicImport = new Function('id', 'return import(id)');
-      const jsMod: any = await dynamicImport('@docmd/engine-js').catch(() => null);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore — optional peer dep, not in node_modules of docmd-search
+      const jsMod: any = await import('@docmd/engine-js').catch(() => null);
       if (jsMod?.createJsEngine) {
         const jsEngine = jsMod.createJsEngine() as Engine;
         const jsResult = await jsEngine.run<T>({ type, payload });

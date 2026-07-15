@@ -77,6 +77,8 @@ export interface IndexDirectoryOptions extends IndexOptions {
   model?: string;
   /** Search config override (takes precedence over defaults). */
   config?: Partial<SearchConfig>;
+  /** Keep model loaded in memory after indexing (useful for watch/dev mode). */
+  keepModelLoaded?: boolean;
 }
 
 /* ── Batch Size ────────────────────────────────────────────── */
@@ -290,7 +292,9 @@ export async function indexDirectory(
     throw new Error(`Embedding failed: ${err?.message ?? String(err)}\n` +
       `Index saved with ${manifest.totalChunks} chunks (without embeddings).`);
   } finally {
-    modelManager?.dispose();
+    if (!options.keepModelLoaded) {
+      modelManager?.dispose();
+    }
   }
 
   // ── Phase 5: Finalize ──────────────────────────────────
