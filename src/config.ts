@@ -16,7 +16,7 @@
  * Configuration system.
  *
  * Handles model profiles, defaults, and config resolution.
- * Config is merged in order: defaults → global (~/.docmd-search) → project (.docmd-search) → CLI flags.
+ * Config is merged in order: defaults → global (~/.docmd-search) → project (_docmd-search) → CLI flags.
  */
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
@@ -118,7 +118,7 @@ export interface SearchConfig {
   include: string[];
   /** Glob patterns to exclude. */
   exclude: string[];
-  /** Output directory name (relative to root, default: '.docmd-search'). */
+  /** Output directory name (relative to root, default: '_docmd-search'). */
   outDir: string;
   /** Enable incremental indexing (default: true). */
   incremental: boolean;
@@ -133,7 +133,7 @@ const DEFAULT_EXCLUDE = [
   '**/build/**',
   '**/site/**',
   '**/.git/**',
-  '**/.docmd-search/**',
+  '**/_docmd-search/**',
   '**/.cache/**',
   '**/.next/**',
   '**/.nuxt/**',
@@ -150,7 +150,7 @@ export const DEFAULT_CONFIG: SearchConfig = {
   chunkOverlap: 32,
   include: ['**/*.md', '**/*.txt', '**/*.html'],
   exclude: DEFAULT_EXCLUDE,
-  outDir: '.docmd-search',
+  outDir: '_docmd-search',
   incremental: true,
   topK: 10,
 };
@@ -200,12 +200,12 @@ export function getGlobalDir(): string {
   return GLOBAL_DIR;
 }
 
-/* ── Project Configuration (.docmd-search/config.json) ─────── */
+/* ── Project Configuration (_docmd-search/config.json) ─────── */
 
 /** Load per-project configuration overrides. Returns null if none. */
 export async function loadProjectConfig(rootDir: string): Promise<Partial<SearchConfig> | null> {
   try {
-    const configPath = join(rootDir, '.docmd-search', 'config.json');
+    const configPath = join(rootDir, '_docmd-search', 'config.json');
     const raw = await readFile(configPath, 'utf-8');
     return JSON.parse(raw) as Partial<SearchConfig>;
   } catch {

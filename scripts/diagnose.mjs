@@ -17,7 +17,7 @@ async function findMdFiles(dir, out = []) {
   let entries;
   try { entries = await readdir(dir, { withFileTypes: true }); } catch { return out; }
   for (const e of entries) {
-    if (['.', 'node_modules', 'site', 'dist', '.docmd-search'].some(s => e.name.startsWith(s))) continue;
+    if (['.', 'node_modules', 'site', 'dist', '_docmd-search'].some(s => e.name.startsWith(s))) continue;
     const full = join(dir, e.name);
     if (e.isDirectory()) await findMdFiles(full, out);
     else if (['.md', '.txt', '.html'].includes(extname(e.name))) out.push(full);

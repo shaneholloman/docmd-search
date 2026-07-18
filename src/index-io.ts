@@ -16,7 +16,7 @@
  * Multi-batch Index I/O.
  *
  * Index format:
- *   .docmd-search/
+ *   _docmd-search/
  *   ├── manifest.json          — Master manifest (tracks files, batches, status)
  *   ├── navigation.json        — Pre-built nav tree for docmd UI
  *   └── batches/

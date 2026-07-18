@@ -230,7 +230,7 @@ try {
     assert(c.chunkOverlap > 0, 'Invalid chunkOverlap');
     assert(Array.isArray(c.include), 'include not array');
     assert(Array.isArray(c.exclude), 'exclude not array');
-    assert(c.outDir === '.docmd-search', `Wrong outDir: ${c.outDir}`);
+    assert(c.outDir === '_docmd-search', `Wrong outDir: ${c.outDir}`);
     assert(c.incremental === true, 'incremental not true');
     assert(c.topK > 0, 'Invalid topK');
   });
@@ -247,7 +247,7 @@ try {
   });
 
   // Test global config persistence
-  const testConfigDir = path.join(tempDir, '.docmd-search');
+  const testConfigDir = path.join(tempDir, '_docmd-search');
   fs.mkdirSync(testConfigDir, { recursive: true });
   fs.writeFileSync(path.join(testConfigDir, 'config.json'), JSON.stringify({
     model: 'Xenova/bge-small-en-v1.5',
@@ -256,8 +256,8 @@ try {
 
   await check('Project config overrides defaults', async () => {
     const projDir = path.join(tempDir, 'proj-config-test');
-    fs.mkdirSync(path.join(projDir, '.docmd-search'), { recursive: true });
-    fs.writeFileSync(path.join(projDir, '.docmd-search', 'config.json'),
+    fs.mkdirSync(path.join(projDir, '_docmd-search'), { recursive: true });
+    fs.writeFileSync(path.join(projDir, '_docmd-search', 'config.json'),
       JSON.stringify({ chunkSize: 512, include: ['**/*.md'] }));
     const resolved = await configMod.resolveConfig(projDir);
     assert(resolved.chunkSize === 512, `Project override failed: ${resolved.chunkSize}`);
@@ -408,7 +408,7 @@ try {
         rootDir: testDocsDir,
         include: ['**/*.md'],
         exclude: ['**/node_modules/**'],
-        outDir: '.docmd-search',
+        outDir: '_docmd-search',
       });
     } catch (e) {
       assert(e.message.includes('Embedding failed') || e.message.includes('Missing dependency') || e.message.includes('module') || e.message.includes('Cannot find') || e.message.includes('import'),
@@ -418,7 +418,7 @@ try {
 
   // Test that the index was saved (even with failed embeddings, fallback should save)
   check('Fallback index created on embedding failure', () => {
-    const indexPath = path.join(testDocsDir, '.docmd-search');
+    const indexPath = path.join(testDocsDir, '_docmd-search');
     if (fs.existsSync(indexPath)) {
       const manifest = JSON.parse(fs.readFileSync(path.join(indexPath, 'manifest.json'), 'utf-8'));
       assert(manifest.version === 1, 'Manifest version wrong');

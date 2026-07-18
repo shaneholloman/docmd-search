@@ -18,8 +18,8 @@
  * docmd-search and docmd are completely independent tools.  When the user
  * runs `docmd-search ./docs --ui`, docmd-search:
  *
- *   1. Indexes the directory (builds .docmd-search/ batches) — its own job.
- *   2. Writes a self-contained docmd.config.json into .docmd-search/_ui/.
+ *   1. Indexes the directory (builds _docmd-search/ batches) — its own job.
+ *   2. Writes a self-contained docmd.config.json into _docmd-search/_ui/.
  *   3. Spawns `npx @docmd/core dev` pointed at that config.
  *
  * The generated config tells docmd to use its own plugin-search with
@@ -109,7 +109,7 @@ export default {
  * Generate custom CSS for the docmd-search web UI.
  *
  * Overrides docmd's primary colour tokens with docmd-search's magenta palette.
- * Written to .docmd-search/_ui/custom.css and referenced via theme.customCss.
+ * Written to _docmd-search/_ui/custom.css and referenced via theme.customCss.
  */
 function generateCustomCSS(): string {
   return `/* docmd-search — custom theme (magenta palette) */
@@ -148,7 +148,7 @@ function generateCustomCSS(): string {
 }
 
 /* ── Search input focus ring ────────────────────────────── */
-.docmd-search-input:focus,
+
 #docmd-search-input:focus {
   border-color: var(--ds-magenta) !important;
   box-shadow: 0 0 0 3px rgba(217, 70, 239, 0.15) !important;
@@ -208,7 +208,7 @@ function generateCustomCSS(): string {
 export interface LaunchOptions {
   /** Root directory being searched. */
   rootDir: string;
-  /** Index output directory (.docmd-search). */
+  /** Index output directory (_docmd-search). */
   indexDir: string;
   /** Port to run on (0 = auto). */
   port?: number;
@@ -221,7 +221,7 @@ export interface LaunchOptions {
 /**
  * Launch the docmd web UI for docmd-search.
  *
- * Creates a staging area inside .docmd-search/ with:
+ * Creates a staging area inside _docmd-search/ with:
  * - docmd.config.json (auto-generated)
  * - custom.css (magenta branding)
  *

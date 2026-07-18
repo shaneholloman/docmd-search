@@ -135,7 +135,7 @@ No configuration is required to get started.
 }
 ```
 
-**Per-project** (`.docmd-search/config.json`):
+**Per-project** (`_docmd-search/config.json`):
 ```json
 {
   "model": "Xenova/bge-small-en-v1.5",
@@ -156,7 +156,7 @@ import { indexDirectory, loadAllBatches } from 'docmd-search';
 
 const index = await indexDirectory({
   rootDir: './docs',
-  outDir: '.docmd-search',
+  outDir: '_docmd-search',
 });
 ```
 
@@ -165,7 +165,7 @@ Browser client:
 ```js
 import { load, search } from 'docmd-search/client';
 
-await load('/path/to/.docmd-search');
+await load('/path/to/_docmd-search');
 const results = search('deploy kubernetes', 10);
 ```
 

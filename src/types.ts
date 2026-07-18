@@ -60,7 +60,7 @@ export interface IndexOptions {
   chunkSize?: number;
   /** Chunk overlap in tokens (default: 32). */
   chunkOverlap?: number;
-  /** Output directory for the index (default: '.docmd-search'). */
+  /** Output directory for the index (default: '_docmd-search'). */
   outDir?: string;
 }
 
