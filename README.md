@@ -9,9 +9,9 @@
   
   <!-- ONE LINE SUMMARY -->
   <p>
-    <b>Offline semantic search engine for documentation.</b>
+    <b>Search that understands meaning and runs in the browser.</b>
     <br/>
-    Local embeddings, browser-ready indexes.
+    Offline semantic search for any documentation site. Understands meaning, runs entirely in the browser, and never sends data to the cloud.
   </p>
   
   <!-- BADGES -->

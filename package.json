@@ -40,7 +40,7 @@
     "dist"
   ],
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=20.0.0"
   },
   "devDependencies": {
     "@huggingface/transformers": "^4.2.0",
@@ -50,7 +50,10 @@
     "typescript": "^6.0.3"
   },
   "overrides": {
-    "onnxruntime-node": "$onnxruntime-node"
+    "onnxruntime-node": "$onnxruntime-node",
+    "protobufjs": "^7.6.5",
+    "adm-zip": "^0.6.0",
+    "sharp": "^0.35.0"
   },
   "peerDependencies": {
     "@docmd/engine-js": ">=0.8.10",
@@ -75,7 +78,7 @@
   "allowScripts": {
     "esbuild@0.28.1": true,
     "onnxruntime-node@1.27.0": true,
-    "protobufjs@7.6.4": true,
+    "protobufjs@7.6.5": true,
     "sharp@0.34.5": true
   },
   "keywords": [
