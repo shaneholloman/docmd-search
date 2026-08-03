@@ -59,13 +59,25 @@
     "@docmd/engine-js": ">=0.8.10",
     "@docmd/engine-rust": ">=0.8.10",
     "@huggingface/transformers": "^4.2.0",
-    "onnxruntime-node": "^1.27.0"
+    "onnxruntime-node": ">=1.27.0",
+    "adm-zip": ">=0.6.0",
+    "sharp": ">=0.35.0",
+    "protobufjs": ">=7.6.5"
   },
   "peerDependenciesMeta": {
     "@huggingface/transformers": {
       "optional": true
     },
     "onnxruntime-node": {
+      "optional": true
+    },
+    "adm-zip": {
+      "optional": true
+    },
+    "sharp": {
+      "optional": true
+    },
+    "protobufjs": {
       "optional": true
     },
     "@docmd/engine-rust": {
